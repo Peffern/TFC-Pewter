@@ -1,0 +1,8 @@
+{
+  "item.jug.blow": {
+    "category": "ambient",
+    "sounds": [
+      "jugblow1"
+    ]
+  }
+}

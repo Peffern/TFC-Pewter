@@ -1,0 +1,21 @@
+﻿#en_US
+#This is the Main language configuration file
+#========
+#= TFCBowls items =
+#========
+item.Metal Bowl.name=Pewter Bowl
+item.Metal Bowl Dirty.name=Pewter Bowl (Dirty)
+item.Clean Salad.name=Salad
+item.Metal Jug.Metal Jug.name=Pewter Jug
+item.Metal Jug.Water Jug.name=Water Jug
+item.moltenPewter.name=Unshaped Pewter
+item.pewterIngot.name=Pewter Ingot
+item.pewterDoubleIngot.name=Pewter Double Ingot
+item.pewterSheet.name=Pewter Sheet
+item.pewterDoubleSheet.name=Pewter Double Sheet
+#========
+#= TFCBowls GUIs =
+#========
+gui.metal.Pewter=Pewter
+gui.plans.metalbowl=Bowl
+gui.plans.metaljug=Jug
