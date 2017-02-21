@@ -50,7 +50,7 @@ public class TFCPewter
 	public static final String MODNAME = "TFC Pewter";
 	
 	/** Mod Version */
-	public static final String VERSION = "2.0";
+	public static final String VERSION = "2.1";
 	
 	/** Plain bowl */
 	public static Item pewterBowl;
