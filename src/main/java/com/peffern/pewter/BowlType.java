@@ -17,15 +17,26 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+/**
+ * Enum for ceramic or pewter bowls
+ * handles salad stuff
+ * @author peffern
+ *
+ */
 public enum BowlType 
 {
+	/** The TFC Ceramic Bowl */
 	CERAMIC(TFCItems.potteryBowl, TFCItems.salad),
+	/** The custom Pewter Bowl */
 	METAL(TFCPewter.pewterBowl, TFCPewter.saladPewterBowl),
+	/** NO bowl */
 	NONE(null,null);
 	
 	private static final float[] saladWeights = new float[]{10,4,4,2};
 	
+	/** The bowl item for this enum instance */
 	private Item item;
+	/** the Salad item to create */
 	private Item salad;
 	
 	private BowlType(Item i, Item s)
@@ -39,6 +50,10 @@ public enum BowlType
 		return item;
 	}
 	
+	/**
+	 * Convenience method to setup item stack
+	 * @return the item stack
+	 */
 	public ItemStack makeSalad()
 	{
 		if(salad == null)
@@ -47,6 +62,11 @@ public enum BowlType
 			return new ItemStack(salad, 1);
 	}
 	
+	/**
+	 * Actually perform the salad creation method
+	 * @param player the player (for skills purposes)
+	 * @param te the tile entity food prep
+	 */
 	public static void createSalad(EntityPlayer player, TEFoodPrep te)
 	{
 		BowlType bt = BowlType.typeSalad(te);
@@ -109,11 +129,21 @@ public enum BowlType
 		}
 	}
 	
+	/**
+	 * Make sure a salad can be made
+	 * @param te the food prep te
+	 * @return true if can make salad
+	 */
 	public static boolean validateSalad(TEFoodPrep te)
 	{
 		return (typeSalad(te) != NONE);
 	}
 	
+	/** Get the bowl type to use for a salad
+	 * 
+	 * @param te the current food prep Tile Entity
+	 * @return the bowl type instance enum
+	 */
 	public static BowlType typeSalad(TEFoodPrep te)
 	{
 		if(te.lastTab == 1)
@@ -158,6 +188,9 @@ public enum BowlType
 		return NONE;
 	}
 	
+	/**
+	 * Cooking parameters
+	 */
 	public static void combineTastes(NBTTagCompound nbt, float[] weights, ItemStack... isArray)
 	{
 		int tasteSweet = 0;

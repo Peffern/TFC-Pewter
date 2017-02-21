@@ -1,21 +1,8 @@
 package com.peffern.pewter;
 
 
-import com.bioxx.tfc.Core.Metal.MetalRegistry;
-import com.bioxx.tfc.Items.ItemIngot;
-import com.bioxx.tfc.Items.ItemMetalSheet;
-import com.bioxx.tfc.Items.ItemMetalSheet2x;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
+import com.bioxx.tfc.Core.Metal.Alloy.EnumTier;
 import com.bioxx.tfc.TerraFirmaCraft;
-import com.bioxx.tfc.Core.Recipes;
-import com.bioxx.tfc.Core.Metal.Alloy;
-import com.bioxx.tfc.Core.Metal.AlloyManager;
-import com.bioxx.tfc.api.HeatIndex;
-import com.bioxx.tfc.api.HeatRaw;
-import com.bioxx.tfc.api.HeatRegistry;
 import com.bioxx.tfc.api.Metal;
 import com.bioxx.tfc.api.TFCFluids;
 import com.bioxx.tfc.api.TFCItems;
@@ -27,6 +14,11 @@ import com.bioxx.tfc.api.Crafting.BarrelManager;
 import com.bioxx.tfc.api.Crafting.BarrelRecipe;
 import com.bioxx.tfc.api.Crafting.PlanRecipe;
 import com.bioxx.tfc.api.Enums.RuleEnum;
+import com.peffern.metals.BaseMetal;
+import com.peffern.metals.IMetal;
+import com.peffern.metals.Ingredient;
+import com.peffern.metals.MetalData;
+import com.peffern.metals.MetalsRegistry;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
@@ -42,8 +34,12 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-
-@Mod(modid = TFCPewter.MODID, name = TFCPewter.MODNAME, version = TFCPewter.VERSION, dependencies = "required-before:" + "terrafirmacraft" + ";")
+/**
+ * Mod to make pewter a new alloy so you can make better bowls and jugs
+ * @author peffern
+ *
+ */
+@Mod(modid = TFCPewter.MODID, name = TFCPewter.MODNAME, version = TFCPewter.VERSION, dependencies = "required-before:" + "terrafirmacraft" + ";" + "required-after:" + "tfcmetals")
 public class TFCPewter 
 {
 	
@@ -54,41 +50,40 @@ public class TFCPewter
 	public static final String MODNAME = "TFC Pewter";
 	
 	/** Mod Version */
-	public static final String VERSION = "1.4";
+	public static final String VERSION = "2.0";
 	
-	private static int pewterMetalID = 21;
-	
+	/** Plain bowl */
 	public static Item pewterBowl;
 	
+	/** Bowl needs to be washed */
 	public static Item pewterBowlDirty;
 	
+	/** Salad item */
 	public static Item saladPewterBowl;
 	
+	/** Pewter jug item */
 	public static Item pewterJug;
 	
+	/** molten ingot */
 	public static Item pewterUnshaped;
 	
+	/** ingot */
 	public static Item pewterIngot;
 	
+	/** welded ingot */
 	public static Item pewterIngot2X;
 	
+	/** sheet */
 	public static Item pewterSheet;
 	
+	/** welded sheet */
 	public static Item pewterSheet2X;
 	
+	/** Pewter metal instance in the registry */
 	public static Metal PEWTER;
 	
+	/** anvil state */
 	private static boolean anvilInitialized = false;
-	
-	public static void setPewterMetalID(int id)
-	{
-		pewterMetalID = id;
-	}
-	
-	public static int getPewterMetalID()
-	{
-		return pewterMetalID;
-	}
 	
 	@EventHandler
 	public void init(FMLInitializationEvent e)
@@ -108,64 +103,14 @@ public class TFCPewter
 		
 		saladPewterBowl = new ItemCustomSalad().setUnlocalizedName("Clean Salad");
 		GameRegistry.registerItem(saladPewterBowl, saladPewterBowl.getUnlocalizedName());
+		//add bucket cleaning registry
 		GameRegistry.addShapelessRecipe(new ItemStack(pewterBowl), new ItemStack(pewterBowlDirty), new ItemStack(TFCItems.woodenBucketWater));
 		
 		pewterJug = new ItemCustomJug().setUnlocalizedName("Metal Jug");
 		GameRegistry.registerItem(pewterJug,pewterJug.getUnlocalizedName());
 		
-		pewterUnshaped = new ItemCustomMelted().setUnlocalizedName("moltenPewter");
-		GameRegistry.registerItem(pewterUnshaped, pewterUnshaped.getUnlocalizedName());
 		
-		pewterIngot = new ItemIngot()
-		{
-			@Override
-			public void registerIcons(IIconRegister registerer)
-			{
-				this.itemIcon = registerer.registerIcon(TFCPewter.MODID + ":" + "pewterIngot");
-			}
-		}.setUnlocalizedName("pewterIngot");
-		GameRegistry.registerItem(pewterIngot, pewterIngot.getUnlocalizedName());
-		
-		pewterIngot2X = new ItemIngot()
-		{
-			@Override
-			public void registerIcons(IIconRegister registerer)
-			{
-				this.itemIcon = registerer.registerIcon(TFCPewter.MODID + ":" + "pewterDoubleIngot");
-			}
-		}.setMetal("Pewter", 200).setUnlocalizedName("pewterDoubleIngot");
-		GameRegistry.registerItem(pewterIngot2X, pewterIngot2X.getUnlocalizedName());
-
-		pewterSheet = new ItemMetalSheet(pewterMetalID)
-		{
-			@Override
-			public void registerIcons(IIconRegister registerer)
-			{
-				this.itemIcon = registerer.registerIcon(TFCPewter.MODID + ":" + "pewterSheet");
-			}
-		}.setMetal("Pewter", 200).setUnlocalizedName("pewterSheet");
-		GameRegistry.registerItem(pewterSheet, pewterSheet.getUnlocalizedName());
-
-		pewterSheet2X = new ItemMetalSheet2x(pewterMetalID)
-		{
-			@Override
-			public void registerIcons(IIconRegister registerer)
-			{
-				this.itemIcon = registerer.registerIcon(TFCPewter.MODID + ":" + "pewterDoubleSheet");
-			}
-		}.setMetal("Pewter", 400).setUnlocalizedName("pewterDoubleSheet");
-		GameRegistry.registerItem(pewterSheet2X, pewterSheet2X.getUnlocalizedName());
-
-		
-		PEWTER = new Metal("Pewter", pewterUnshaped, pewterIngot);
-		
-		MetalRegistry.instance.addMetal(PEWTER, Alloy.EnumTier.TierI);
-		
-		Alloy Pewter = new Alloy(PEWTER, Alloy.EnumTier.TierI);
-		Pewter.addIngred(Global.TIN, 84.99f, 99.01f);
-		Pewter.addIngred(Global.COPPER, 0.99f, 15.01f);
-		AlloyManager.INSTANCE.addAlloy(Pewter);
-		
+		//fml event things
 		TerraFirmaCraft.PACKET_PIPELINE.registerPacket(InitClientWorldPacket.class);
 		
 		FMLCommonHandler.instance().bus().register(new PlayerTracker());
@@ -174,34 +119,60 @@ public class TFCPewter
 		
 		MinecraftForge.EVENT_BUS.register(new ChunkEventHandler());
 
-		HeatRegistry manager = HeatRegistry.getInstance();
 		
-		HeatRaw PewterRaw = new HeatRaw(0.17, 440);
+		IMetal metal = new BaseMetal
+		(
+			"Pewter",
+			"moltenPewter",
+			TFCPewter.MODID + ":" + "moltenPewter",
+			"pewterIngot",
+			TFCPewter.MODID + ":" + "pewterIngot",
+			"pewterDoubleIngot",
+			TFCPewter.MODID + ":" + "pewterDoubleIngot",
+			"pewterSheet",
+			TFCPewter.MODID + ":" + "pewterSheet",
+			"pewterDoubleSheet",
+			TFCPewter.MODID + ":" + "pewterDoubleSheet",
+			TFCPewter.MODID + ":" + "metal/Pewter",
+			TFCPewter.MODID + ":" + "metal/Pewter Trap Door",
+			TFCPewter.MODID,
+			"textures/blocks/metal/Pewter.png",
+			new Ingredient[]{new Ingredient(Global.TIN, 84.99f, 99.01f), new Ingredient(Global.COPPER, 0.99f, 15.01f)},
+			0.17,
+			440,
+			EnumTier.TierI,
+			AnvilReq.BRONZE
+		);
+		MetalData data = MetalsRegistry.addMetal(metal);
 		
-		manager.addIndex(new HeatIndex(new ItemStack(pewterUnshaped,1), PewterRaw,new ItemStack(pewterUnshaped,1)));
-		manager.addIndex(new HeatIndex(new ItemStack(pewterIngot,1), PewterRaw,new ItemStack(pewterUnshaped,1)));
-		manager.addIndex(new HeatIndex(new ItemStack(pewterIngot2X,1), PewterRaw,new ItemStack(pewterUnshaped,2)));
-		manager.addIndex(new HeatIndex(new ItemStack(pewterSheet,1), PewterRaw,new ItemStack(pewterUnshaped,2)));
-		manager.addIndex(new HeatIndex(new ItemStack(pewterSheet2X,1), PewterRaw,new ItemStack(pewterUnshaped,4)));
-		
-		GameRegistry.addShapelessRecipe(new ItemStack(pewterUnshaped, 1, 0), 
-				new Object[] {Recipes.getStackNoTemp(new ItemStack(pewterIngot, 1)), new ItemStack(TFCItems.ceramicMold, 1, 1)});
-
-		GameRegistry.addShapelessRecipe(new ItemStack(pewterIngot, 1, 0), 
-				new Object[] {Recipes.getStackNoTemp(new ItemStack(pewterUnshaped, 1))});
-		
+		pewterUnshaped = data.unshaped;
+		pewterIngot = data.ingot;
+		pewterIngot2X = data.ingot2X;
+		pewterSheet = data.sheet;
+		pewterSheet2X = data.sheet2X;
+		PEWTER = data.metal;
+		//barrel bowl cleaning recipe
 		BarrelManager.getInstance().addRecipe(new BarrelRecipe(new ItemStack(pewterBowlDirty), new FluidStack(TFCFluids.FRESHWATER, 200), new ItemStack(pewterBowl), new FluidStack(TFCFluids.FRESHWATER, 200)).setMinTechLevel(0).setSealedRecipe(false));
 
+		//jug is a fluid container
 		FluidContainerRegistry.registerFluidContainer(new FluidStack(TFCFluids.FRESHWATER, 1333), new ItemStack(pewterJug, 1, 1), new ItemStack(pewterJug,1, 0));
 
 	
 	}
 	
+	/**
+	 * determine anvil status
+	 * @return anvil status
+	 */
 	public static boolean anvilIsInit()
 	{
 		return anvilInitialized;
 	}
 	
+	/**
+	 * Do anvil setup
+	 * @param world the world
+	 */
 	public static void anvilInit(World world)
 	{
 		if(anvilIsInit())
@@ -218,27 +189,6 @@ public class TFCPewter
 		//manufacturing items
 		manager.addRecipe(new AnvilRecipe(new ItemStack(pewterSheet2X), null, "metaljug", false, AnvilReq.BRONZE, new ItemStack(pewterJug)).clearRecipeSkills());
 		manager.addRecipe(new AnvilRecipe(new ItemStack(pewterSheet), null, "metalbowl", false, AnvilReq.BRONZE, new ItemStack(pewterBowl, 2)).clearRecipeSkills());
-		manager.addRecipe(new AnvilRecipe(new ItemStack(pewterIngot2X), null, "sheet", false, AnvilReq.BRONZE, new ItemStack(pewterSheet)));
-		
-		//double ingot/sheet
-		manager.addWeldRecipe(new AnvilRecipe(new ItemStack(pewterIngot),new ItemStack(pewterIngot),AnvilReq.BRONZE, new ItemStack(pewterIngot2X, 1)));
-		manager.addWeldRecipe(new AnvilRecipe(new ItemStack(pewterSheet),new ItemStack(pewterSheet),AnvilReq.BRONZE, new ItemStack(pewterSheet2X, 1)));
-		
-		try
-		{
-			//pewter sheet trapdoords
-			Method addTrapDoor = Recipes.class.getDeclaredMethod("addTrapDoor", Item.class, int.class);
-			addTrapDoor.setAccessible(true);
-			addTrapDoor.invoke(null, pewterSheet, pewterMetalID);
-		}
-		catch(InvocationTargetException ex)
-		{
-			ex.getTargetException().printStackTrace();
-		}
-		catch(Exception ex)
-		{
-			ex.printStackTrace();
-		}
 		
 		anvilInitialized = true;
 	
@@ -248,6 +198,9 @@ public class TFCPewter
 	
 	/**
 	 * ASM recovery for ItemKnife adding bowls to Food Prep GUI. Checks the given inventory slot for a metal bowl
+	 * @param hasBowl previous position of bowl, if one exists
+	 * @param i position to currently check
+	 * @param player the player
 	 */
 	public static int evalBowl(int hasBowl, int i, EntityPlayer player)
 	{

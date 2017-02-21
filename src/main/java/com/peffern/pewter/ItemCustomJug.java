@@ -18,9 +18,16 @@ import net.minecraft.util.Vec3;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.world.World;
 
+/**
+ * Custom jug item
+ * @author peffern
+ *
+ */
 public class ItemCustomJug extends ItemTerra
 {
+	/** texture when empty */
 	private IIcon emptyIcon;
+	/** texture when full */
 	private IIcon waterIcon;
 	
 	public ItemCustomJug()

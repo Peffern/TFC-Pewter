@@ -16,6 +16,11 @@ import net.minecraft.launchwrapper.IClassTransformer;
 
 import static org.objectweb.asm.Opcodes.*;
 
+/**
+ * Override the salad creation and validation to functions to call TFC Pewter's custom ones
+ * @author peffern
+ *
+ */
 public class TEFoodPrepCT implements IClassTransformer
 {
 	@Override

@@ -10,7 +10,7 @@ public class TFCPewterLoadingPlugin implements IFMLLoadingPlugin
 	@Override
 	public String[] getASMTransformerClass() 
 	{
-		return new String[]{ItemKnifeCT.class.getName(), TEFoodPrepCT.class.getName(), ClientProxyCT.class.getName(), BlockSetupCT.class.getName(), RecipesCT.class.getName()};
+		return new String[]{ItemKnifeCT.class.getName(), TEFoodPrepCT.class.getName()};
 	}
 
 	@Override

@@ -16,6 +16,11 @@ import net.minecraft.launchwrapper.IClassTransformer;
 
 import static org.objectweb.asm.Opcodes.*;
 
+/**
+ * Insert the evalBowl call so that when you rc with a knife, it inserts the custom bowls as well as the old ceramic ones.
+ * @author peffern
+ *
+ */
 public class ItemKnifeCT implements IClassTransformer
 {
 

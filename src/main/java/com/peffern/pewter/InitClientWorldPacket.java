@@ -6,6 +6,11 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import net.minecraft.entity.player.EntityPlayer;
 
+/**
+ * Setup anvil on client side start
+ * @author peffern
+ *
+ */
 public class InitClientWorldPacket extends AbstractPacket
 {
 	@Override

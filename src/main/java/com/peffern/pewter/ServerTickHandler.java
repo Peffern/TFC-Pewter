@@ -4,6 +4,11 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
 
+/**
+ * When the server starts setup the anvil recipes
+ * @author peffern
+ *
+ */
 public class ServerTickHandler 
 {
     @SubscribeEvent 

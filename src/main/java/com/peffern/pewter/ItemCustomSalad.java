@@ -14,6 +14,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.client.MinecraftForgeClient;
 
+/** Custom Salad Item 
+ *	@author peffern 
+ */
 public class ItemCustomSalad extends ItemMeal
 {
 	

@@ -3,6 +3,11 @@ package com.peffern.pewter;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.event.world.WorldEvent;
 
+/**
+ * setup anvil on world load
+ * @author peffern
+ *
+ */
 public class ChunkEventHandler 
 {
     @SubscribeEvent 

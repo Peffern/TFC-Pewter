@@ -7,6 +7,11 @@ import com.bioxx.tfc.api.Enums.EnumWeight;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 
+/**
+ * Custom bowl item
+ * @author peffern
+ *
+ */
 public class ItemCustomBowl extends ItemTerra
 {
 	

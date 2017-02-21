@@ -7,6 +7,11 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraft.entity.player.EntityPlayerMP;
 
+/**
+ * When the player login send the init client packet
+ * @author agoodisman
+ *
+ */
 public class PlayerTracker 
 {
 	@SubscribeEvent 

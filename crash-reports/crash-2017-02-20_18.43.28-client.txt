@@ -1,0 +1,115 @@
+---- Minecraft Crash Report ----
+// My bad.
+
+Time: 2/20/17 6:43 PM
+Description: Unexpected error
+
+java.lang.NoSuchMethodError: com.peffern.metals.TFCMetalIndex.getWailaStack(Lmcp/mobius/waila/api/IWailaDataAccessor;Lmcp/mobius/waila/api/IWailaConfigHandler;)Lnet/minecraft/item/ItemStack;
+	at com.bioxx.tfc.WAILA.WAILAData.getWailaStack(WAILAData.java:103)
+	at mcp.mobius.waila.overlay.RayTracing.getIdentifierItems(RayTracing.java:172)
+	at mcp.mobius.waila.overlay.RayTracing.getIdentifierStack(RayTracing.java:97)
+	at mcp.mobius.waila.overlay.RayTracing.getTargetStack(RayTracing.java:66)
+	at mcp.mobius.waila.overlay.WailaTickHandler.tickClient(WailaTickHandler.java:76)
+	at cpw.mods.fml.common.eventhandler.ASMEventHandler_41_WailaTickHandler_tickClient_ClientTickEvent.invoke(.dynamic)
+	at cpw.mods.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:54)
+	at cpw.mods.fml.common.eventhandler.EventBus.post(EventBus.java:140)
+	at cpw.mods.fml.common.FMLCommonHandler.onPreClientTick(FMLCommonHandler.java:325)
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:1678)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1039)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:962)
+	at net.minecraft.client.main.Main.main(Main.java:164)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(Unknown Source)
+	at GradleStart.main(Unknown Source)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at com.bioxx.tfc.WAILA.WAILAData.getWailaStack(WAILAData.java:103)
+	at mcp.mobius.waila.overlay.RayTracing.getIdentifierItems(RayTracing.java:172)
+	at mcp.mobius.waila.overlay.RayTracing.getIdentifierStack(RayTracing.java:97)
+	at mcp.mobius.waila.overlay.RayTracing.getTargetStack(RayTracing.java:66)
+	at mcp.mobius.waila.overlay.WailaTickHandler.tickClient(WailaTickHandler.java:76)
+	at cpw.mods.fml.common.eventhandler.ASMEventHandler_41_WailaTickHandler_tickClient_ClientTickEvent.invoke(.dynamic)
+	at cpw.mods.fml.common.eventhandler.ASMEventHandler.invoke(ASMEventHandler.java:54)
+	at cpw.mods.fml.common.eventhandler.EventBus.post(EventBus.java:140)
+	at cpw.mods.fml.common.FMLCommonHandler.onPreClientTick(FMLCommonHandler.java:325)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityClientPlayerMP['Player308'/61, l='MpServer', x=43.64, y=149.62, z=-5533.66]]
+	Chunk stats: MultiplayerChunkCache: 620, 620
+	Level seed: 1558985357541109019
+	Level generator: ID 00 - TFCDefault, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: World: (40,148,-5528), Chunk: (at 8,9,8 in 2,-346; contains blocks 32,0,-5536 to 47,255,-5521), Region: (0,-11; contains chunks 0,-352 to 31,-321, blocks 0,0,-5632 to 511,255,-5121)
+	Level time: 602175 game time, 626775 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 21 total; [EntityBat['Bat'/36, l='MpServer', x=19.25, y=64.10, z=-5608.25], EntityBat['Bat'/3397, l='MpServer', x=28.44, y=61.96, z=-5598.38], EntityBat['Bat'/3398, l='MpServer', x=26.38, y=62.51, z=-5598.22], EntityBat['Bat'/3399, l='MpServer', x=26.16, y=62.00, z=-5600.66], EntityBat['Bat'/39, l='MpServer', x=40.70, y=61.09, z=-5607.65], EntitySquidTFC['Squid'/41, l='MpServer', x=58.00, y=133.38, z=-5588.63], EntitySquidTFC['Squid'/43, l='MpServer', x=60.88, y=132.00, z=-5586.38], EntitySquidTFC['Squid'/44, l='MpServer', x=57.69, y=132.00, z=-5590.38], EntityBat['Bat'/47, l='MpServer', x=120.25, y=60.10, z=-5553.53], EntityBat['Bat'/48, l='MpServer', x=119.34, y=59.10, z=-5557.75], EntityBat['Bat'/52, l='MpServer', x=113.56, y=47.10, z=-5532.53], EntityBat['Bat'/53, l='MpServer', x=113.38, y=47.10, z=-5532.66], EntityBat['Bat'/54, l='MpServer', x=121.00, y=63.10, z=-5525.47], EntityBat['Bat'/2806, l='MpServer', x=116.25, y=63.00, z=-5552.13], EntityBat['Bat'/3096, l='MpServer', x=116.92, y=60.03, z=-5507.66], EntityBat['Bat'/2041, l='MpServer', x=116.16, y=60.00, z=-5505.38], EntityPigTFC['Pig'/58, l='MpServer', x=169.97, y=149.00, z=-5480.09], EntityBat['Bat'/2042, l='MpServer', x=119.41, y=61.02, z=-5515.16], EntityPigTFC['Pig'/59, l='MpServer', x=168.69, y=149.00, z=-5480.63], EntityClientPlayerMP['Player308'/61, l='MpServer', x=43.64, y=149.62, z=-5533.66], EntityPigTFC['Pig'/31, l='MpServer', x=-44.78, y=144.00, z=-5605.41]]
+	Retry entities: 0 total; []
+	Server brand: fml,forge
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:415)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2566)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:991)
+	at net.minecraft.client.main.Main.main(Main.java:164)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(Unknown Source)
+	at GradleStart.main(Unknown Source)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.7.10
+	Operating System: Mac OS X (x86_64) version 10.10.5
+	Java Version: 1.8.0_91, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 396365672 bytes (378 MB) / 822607872 bytes (784 MB) up to 1908932608 bytes (1820 MB)
+	JVM Flags: 0 total; 
+	AABB Pool Size: 0 (0 bytes; 0 MB) allocated, 0 (0 bytes; 0 MB) used
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 17
+	FML: MCP v9.05 FML v7.10.99.99 Minecraft Forge 10.13.4.1558 10 mods loaded, 10 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+	UCHIJAAAAAAAAA	mcp{9.05} [Minecraft Coder Pack] (minecraft.jar) 
+	UCHIJAAAAAAAAA	FML{7.10.99.99} [Forge Mod Loader] (forgeSrc-1.7.10-10.13.4.1558-1.7.10.jar) 
+	UCHIJAAAAAAAAA	Forge{10.13.4.1558} [Minecraft Forge] (forgeSrc-1.7.10-10.13.4.1558-1.7.10.jar) 
+	UCHIJAAAAAAAAA	NotEnoughItems{1.0.4.95} [Not Enough Items] (NotEnoughItems-1.7.10-1.0.4.95-dev.jar) 
+	UCHIJAAAAAAAAA	tfc_coremod{0.79.29} [TFC[coremod]] (minecraft.jar) 
+	UCHIJAAAAAAAAA	CodeChickenCore{1.0.4.35} [CodeChicken Core] (minecraft.jar) 
+	UCHIJAAAAAAAAA	tfcpewter{2.0} [TFC Pewter] (bin) 
+	UCHIJAAAAAAAAA	Waila{1.5.11} [Waila] (Waila-1.5.11-RC2-NONEI_1.7.10.jar) 
+	UCHIJAAAAAAAAA	terrafirmacraft{0.79.29} [TerraFirmaCraft] (bin) 
+	UCHIJAAAAAAAAA	tfcmetals{1.0} [TFC Metal Index] (bin) 
+	GL info: ' Vendor: 'Intel' Version: '2.1 INTEL-10.6.33' Renderer: 'Intel(R) Iris(TM) Graphics 6100'
+	Launched Version: 1.7.10
+	LWJGL: 2.9.1
+	OpenGL: Intel(R) Iris(TM) Graphics 6100 GL version 2.1 INTEL-10.6.33, Intel
+	GL Caps: Using GL 1.3 multitexturing.
+Using framebuffer objects because ARB_framebuffer_object is supported and separate blending is supported.
+Anisotropic filtering is supported and maximum anisotropy is 16.
+Shaders are available because OpenGL 2.1 is supported.
+
+	Is Modded: Definitely; Client brand changed to 'fml,forge'
+	Type: Client (map_client.txt)
+	Resource Packs: []
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	Vec3 Pool Size: 0 (0 bytes; 0 MB) allocated, 0 (0 bytes; 0 MB) used
+	Anisotropic Filtering: Off (1)
