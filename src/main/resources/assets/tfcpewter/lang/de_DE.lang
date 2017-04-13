@@ -1,0 +1,21 @@
+#de_DE
+#This is the German language configuration file
+#========
+#= TFCBowls items =
+#========
+item.Metal Bowl.name=Hartzinnschüssel
+item.Metal Bowl Dirty.name=Hartzinnschüssel (schmutzig)
+item.Clean Salad.name=Salat
+item.Metal Jug.Metal Jug.name=Hartzinnkrug
+item.Metal Jug.Water Jug.name=Wasserkrug
+item.moltenPewter.name=Ungeformtes Hartzinn
+item.pewterIngot.name=Hartzinnbarren
+item.pewterDoubleIngot.name=Doppelter Hartzinnbarren
+item.pewterSheet.name=Hartzinnplatte
+item.pewterDoubleSheet.name=Doppelte Hartzinnplatte
+#========
+#= TFCBowls GUIs =
+#========
+gui.metal.Pewter=Hartzinn
+gui.plans.metalbowl=Schüssel
+gui.plans.metaljug=Krug
