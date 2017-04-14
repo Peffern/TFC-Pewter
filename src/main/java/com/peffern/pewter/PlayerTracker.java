@@ -9,7 +9,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 
 /**
  * When the player login send the init client packet
- * @author agoodisman
+ * @author peffern
  *
  */
 public class PlayerTracker 
